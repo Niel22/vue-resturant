@@ -1,5 +1,7 @@
 # resturant
 
+### A resturant Crud app using VUE and JSON Web Server
+
 ## Project setup
 ```
 npm install
