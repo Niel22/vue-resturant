@@ -1,5 +1,5 @@
 <template>
-    <img alt="vue logo" class="logo" src="../../assets/login.jpeg">
+    <img alt="vue logo" class="logo" src="/assets/img/login.jpeg">
     <h1>Sign In</h1>
     <div class="register">
         <input type="email" v-model="email" placeholder="Enter your email" />
@@ -44,11 +44,10 @@ export default {
                 }
 
                 alert('User logged in');
-                console.log(user.data[0]);
                 localStorage.setItem('auth', JSON.stringify(user.data[0]));
                 this.$router.push({ name: 'home' });
             } catch (error) {
-                console.log(error.message);
+                this.error = error.message;
             }
         }
     }

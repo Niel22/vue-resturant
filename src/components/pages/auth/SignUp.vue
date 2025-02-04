@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img alt="vue logo" class="logo" src="../../assets/logo.png">
+        <img alt="vue logo" class="logo" src="/assets/img/logo.png">
         <h1>Sign Up</h1>
         <div class="register">
             <input type="text" v-model="name" placeholder="Enter your name" />
