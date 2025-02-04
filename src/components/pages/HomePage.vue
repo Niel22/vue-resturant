@@ -1,6 +1,8 @@
 <template>
     <AppHeader />
     <h1>Hello {{ name }}, welcome to home page</h1>
+    <p v-if="error">{{ error }}</p>
+    <p v-if="success">{{ success }}</p>
 
     <table v-if="resturants?.length > 0" border="1">
         <thead>
@@ -18,7 +20,10 @@
                 <td>{{ resturant.name }}</td>
                 <td>{{ resturant.contact }}</td>
                 <td>{{ resturant.address }}</td>
-                <td><router-link :to="{name: 'resturant.update', params : {id : resturant.id}}">Edit</router-link> <button>Delete</button></td>
+                <td>
+                    <router-link :to="{name: 'resturant.update', params : {id : resturant.id}}">Edit</router-link> 
+                    <button @click="deleteRestaurant(resturant.id)">Delete</button>
+                </td>
             </tr>
         </tbody>
     </table>
@@ -39,7 +44,9 @@ export default {
         return {
             name: '',
             user: {},
-            resturants: []
+            resturants: [],
+            error: '',
+            success: ''
         }
     },
     mounted(){
@@ -62,6 +69,18 @@ export default {
             }
             this.user = JSON.parse(user);
             return true;
+        },
+        async deleteRestaurant(id){
+            try{
+                const resturant = await axios.delete('http://localhost:3000/resturants/'+id);
+
+                if (resturant.status === 200) {
+                    this.success = "Resturant Deleted";
+                    this.resturants = this.resturants.filter(resturant => resturant.id !== id);
+                }
+            }catch(error){
+                this.error = error.message
+            }
         }
     }
 }
