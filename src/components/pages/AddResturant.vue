@@ -28,6 +28,11 @@ export default {
             error: ''
         }
     },
+    computed:{
+        getApi(){
+            return process.env.VUE_APP_API_URL
+        }
+    },
     mounted(){
         if(!this.checkAuth()){
             this.$router.push({name: 'signin'});
@@ -47,7 +52,7 @@ export default {
                 return;
             }
 
-            const resturant = await axios.post('http://localhost:3000/resturants', {
+            const resturant = await axios.post(`${this.getApi}resturants`, {
                 name: this.name,
                 contact: this.contact,
                 address: this.address

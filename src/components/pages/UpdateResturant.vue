@@ -36,6 +36,11 @@ export default {
 
         this.getResturant();
     },
+    computed:{
+        getApi(){
+            return process.env.VUE_APP_API_URL
+        }
+    },
     methods: {
         checkAuth(){
             let user = localStorage.getItem('auth');
@@ -47,7 +52,7 @@ export default {
         },
         async getResturant() {
             try {
-                const resturant = await axios.get('http://localhost:3000/resturants/' + this.id );
+                const resturant = await axios.get(`${this.getApi}resturants/${this.id}`);
 
                 this.name = resturant.data.name;
                 this.contact = resturant.data.contact;
@@ -65,7 +70,7 @@ export default {
                     return;
                 }
 
-                const resturant = await axios.put('http://localhost:3000/resturants/'+ this.id, {
+                const resturant = await axios.put(`${this.getApi}resturants/${this.id}`, {
                     name: this.name,
                     contact: this.contact,
                     address: this.address,

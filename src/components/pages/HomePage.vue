@@ -57,9 +57,15 @@ export default {
         this.fetchAllResturants();
         
     },
+    computed:{
+        getApi(){
+            return process.env.VUE_APP_API_URL
+        }
+    },
     methods: {
         async fetchAllResturants(){
-            const result = await axios.get('http://localhost:3000/resturants');
+            console.log(this.getApi);
+            const result = await axios.get(`${this.getApi}resturants`);
             this.resturants = result.data;
         },
         checkAuth(){
@@ -72,7 +78,7 @@ export default {
         },
         async deleteRestaurant(id){
             try{
-                const resturant = await axios.delete('http://localhost:3000/resturants/'+id);
+                const resturant = await axios.delete(`${this.getApi}resturants/${id}`);
 
                 if (resturant.status === 200) {
                     this.success = "Resturant Deleted";

@@ -1,0 +1,24 @@
+{
+  "users": [
+    {
+      "id": "3076",
+      "name": "Felix Blessing",
+      "email": "blessing@gmail.com",
+      "password": "1234"
+    }
+  ],
+  "resturants": [
+    {
+      "name": "Hello",
+      "contact": "Officia voluptatibus",
+      "address": "Pariatur Tempora al",
+      "id": "579b"
+    },
+    {
+      "id": "29a0",
+      "name": "Ipsum eaque quibusda",
+      "contact": "Incididunt delectus",
+      "address": "Odit dolore fuga Ve"
+    }
+  ]
+}

@@ -30,18 +30,23 @@ export default {
             this.$router.push({name: 'home'});
         }
     },
+    computed:{
+        getApi(){
+            return process.env.VUE_APP_API_URL
+        }
+    },
     methods: {
         async signUp()
         {
             try{
 
-                const existingUser = await axios.get('http://localhost:3000/users?email='+this.email);
+                const existingUser = await axios.get(`${this.getApi}users?email=`+this.email);
                 if(existingUser.data.length > 0){
                     alert('Email already taken');
                     return;
                 }
 
-                let result = await axios.post('http://localhost:3000/users', {
+                let result = await axios.post(`${this.getApi}users`, {
                     name: this.name,
                     email: this.email,
                     password: this.password

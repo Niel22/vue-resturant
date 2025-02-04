@@ -28,11 +28,16 @@ export default {
             this.$router.push({name: 'home'});
         }
     },
+    computed:{
+        getApi(){
+            return process.env.VUE_APP_API_URL
+        }
+    },
     methods: {
         async signIn() {
             try {
 
-                const user = await axios.get('http://localhost:3000/users?email=' + this.email);
+                const user = await axios.get(`${this.getApi}users?email=` + this.email);
                 if (user.data.length === 0) {
                     this.error = 'Incorrect email or password';
                     return;
